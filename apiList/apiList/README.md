@@ -1,4 +1,4 @@
-## DataStore Blog Post Comment
+## API Blog Post Comment
 
 This is a getting started with DataStore using the default Blog/Post/Comment schema from `amplify add api`
 
