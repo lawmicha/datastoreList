@@ -27,6 +27,10 @@
 		41379591B48F4865B21200DD /* Comment+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B167ADC00342B7BD2A33A7 /* Comment+Schema.swift */; };
 		BA40E5B5737E458783A1A050 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348ACE4473AE4AC38BC58AFD /* Post.swift */; };
 		93BB778397734D41812DF80A /* Post+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98855353DC543389F3F1667 /* Post+Schema.swift */; };
+		1471AAE157744BD6A91C288D /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB1182E6C74C06B7126456 /* Schedule.swift */; };
+		FED2069E906144F1998416BD /* Schedule+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275CD4AA1F3043FAA25AA001 /* Schedule+Schema.swift */; };
+		70651099583E4407AF546542 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B28A1DAAAD4D8B96562DDE /* Shop.swift */; };
+		02BEEF9111774193993BC6A7 /* Shop+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C1742D72D41A09D0C39EA /* Shop+Schema.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +85,10 @@
 		348ACE4473AE4AC38BC58AFD /* Post.swift */ = {isa = PBXFileReference; name = "Post.swift"; path = "amplify/generated/models/Post.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
 		C98855353DC543389F3F1667 /* Post+Schema.swift */ = {isa = PBXFileReference; name = "Post+Schema.swift"; path = "amplify/generated/models/Post+Schema.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
 		E87BDD69850B42FC91D7E7EB /* schema.graphql */ = {isa = PBXFileReference; name = "schema.graphql"; path = "amplify/backend/api/datastorelist/schema.graphql"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = text; explicitFileType = undefined; includeInIndex = 0; };
+		A0DB1182E6C74C06B7126456 /* Schedule.swift */ = {isa = PBXFileReference; name = "Schedule.swift"; path = "amplify/generated/models/Schedule.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		275CD4AA1F3043FAA25AA001 /* Schedule+Schema.swift */ = {isa = PBXFileReference; name = "Schedule+Schema.swift"; path = "amplify/generated/models/Schedule+Schema.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		74B28A1DAAAD4D8B96562DDE /* Shop.swift */ = {isa = PBXFileReference; name = "Shop.swift"; path = "amplify/generated/models/Shop.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		CC2C1742D72D41A09D0C39EA /* Shop+Schema.swift */ = {isa = PBXFileReference; name = "Shop+Schema.swift"; path = "amplify/generated/models/Shop+Schema.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +237,10 @@
 				71B167ADC00342B7BD2A33A7 /* Comment+Schema.swift */,
 				348ACE4473AE4AC38BC58AFD /* Post.swift */,
 				C98855353DC543389F3F1667 /* Post+Schema.swift */,
+				A0DB1182E6C74C06B7126456 /* Schedule.swift */,
+				275CD4AA1F3043FAA25AA001 /* Schedule+Schema.swift */,
+				74B28A1DAAAD4D8B96562DDE /* Shop.swift */,
+				CC2C1742D72D41A09D0C39EA /* Shop+Schema.swift */,
 			);
 			name = AmplifyModels;
 			path = .;
@@ -484,6 +496,10 @@
 				41379591B48F4865B21200DD /* Comment+Schema.swift in Sources */,
 				BA40E5B5737E458783A1A050 /* Post.swift in Sources */,
 				93BB778397734D41812DF80A /* Post+Schema.swift in Sources */,
+				1471AAE157744BD6A91C288D /* Schedule.swift in Sources */,
+				FED2069E906144F1998416BD /* Schedule+Schema.swift in Sources */,
+				70651099583E4407AF546542 /* Shop.swift in Sources */,
+				02BEEF9111774193993BC6A7 /* Shop+Schema.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

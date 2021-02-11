@@ -17,7 +17,7 @@ struct ContentView: View {
             for _ in 1...10 {
                 let post = Post(title: "My Post", blog: blog)
                 _ = Amplify.API.mutate(request: .create(post))
-
+                
                 for _ in 1...10 {
                     let comment = Comment(post: post, content: "My Comment")
                     _ = Amplify.API.mutate(request: .create(comment))
@@ -34,11 +34,165 @@ struct ContentView: View {
                 NavigationLink(destination: BlogListView()) {
                     Text("View Data")
                 }
+                NavigationLink(destination: AllBlogListView()) {
+                    Text("View All Data")
+                }
             }
         }
     }
 }
+
 import class Amplify.List
+import Combine
+
+class AllBlogListViewModel2: ObservableObject {
+    @Published var blogs = [Blog]()
+    var ref: List<Blog>?
+    
+    init() {
+        Amplify.API.query(request: .paginatedList(Blog.self, limit: 5))
+            .resultPublisher
+            .sink { (error) in
+                if case let .failure(error) = error {
+                    print("\(error)")
+                }
+            } receiveValue: { (result) in
+                switch result {
+                case .success(let blogs):
+                    self.ref = blogs
+                    DispatchQueue.main.async {
+                        self.blogs.append(contentsOf: blogs.elements)
+                    }
+                case .failure(let error):
+                    print("\(error)")
+                }
+            }
+    }
+    
+    func getNextPage() {
+        guard let ref = ref, ref.hasNextPage() else {
+            return
+        }
+        ref.getNextPage { (result) in
+            switch result {
+            case .success(let nextPage):
+                self.ref = nextPage
+                DispatchQueue.main.async {
+                    self.blogs.append(contentsOf: nextPage.elements)
+                }
+            case .failure(let error):
+                print("\(error)")
+            }
+        }
+    }
+    
+    func getAllPages() {
+        guard let ref = ref else {
+            return
+        }
+        if ref.hasNextPage() {
+            ref.getNextPage { (result) in
+                switch result {
+                case .success(let nextPage):
+                    self.ref = nextPage
+                    DispatchQueue.main.async {
+                        self.blogs.append(contentsOf: nextPage.elements)
+                    }
+                    self.getAllPages()
+                case .failure(let error):
+                    print("\(error)")
+                }
+            }
+        }
+    }
+}
+
+class AllBlogListViewModel: ObservableObject {
+    @Published var blogs = [Blog]()
+    var ref: List<Blog>?
+    var sink: AnyCancellable?
+    
+    init() {
+        Amplify.API.query(request: .paginatedList(Blog.self, limit: 5)) { (result) in
+            switch result {
+            case .success(let graphQLResponse):
+                switch graphQLResponse {
+                case .success(let blogs):
+                    self.ref = blogs
+                    DispatchQueue.main.async {
+                        self.blogs.append(contentsOf: blogs.elements)
+                    }
+                case .failure(let error):
+                    print("\(error)")
+                }
+            case .failure(let error):
+                print("\(error)")
+            }
+        }
+    }
+    
+    func getNextPage() {
+        guard let ref = ref, ref.hasNextPage() else {
+            return
+        }
+        ref.getNextPage { (result) in
+            switch result {
+            case .success(let nextPage):
+                self.ref = nextPage
+                DispatchQueue.main.async {
+                    self.blogs.append(contentsOf: nextPage.elements)
+                }
+            case .failure(let error):
+                print("\(error)")
+            }
+        }
+    }
+    
+    func getAllPages() {
+        guard let ref = ref else {
+            return
+        }
+        if ref.hasNextPage() {
+            ref.getNextPage { (result) in
+                switch result {
+                case .success(let nextPage):
+                    self.ref = nextPage
+                    DispatchQueue.main.async {
+                        self.blogs.append(contentsOf: nextPage.elements)
+                    }
+                    self.getAllPages()
+                case .failure(let error):
+                    print("\(error)")
+                }
+            }
+        }
+    }
+}
+
+struct AllBlogListView: View {
+    @ObservedObject var vm = AllBlogListViewModel()
+    var body: some View {
+        NavigationView {
+            VStack {
+                Button("getNextPage", action: {
+                    vm.getNextPage()
+                })
+                Button("getAllPages", action: {
+                    vm.getAllPages()
+                })
+                SwiftUI.List {
+                    ForEach(vm.blogs) { blog in
+                        NavigationLink(destination: PostListView(blog)) {
+                            Text(blog.id)
+                        }
+                    }
+                }
+            }
+            
+            
+        }.navigationBarTitle("All Blogs")
+    }
+}
 
 class BlogListViewModel: ObservableObject {
     @Published var blogs = [Blog]()
@@ -99,7 +253,7 @@ struct BlogListView: View {
                 Spacer()
             }
             
-        
+            
         }.navigationBarTitle("Blogs")
     }
 }

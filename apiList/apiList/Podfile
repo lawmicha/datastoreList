@@ -1,16 +1,16 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
-$LOCAL_REPO = '~/aws-amplify/amplify-ios'
+##$LOCAL_REPO = '~/aws-amplify/amplify-ios'
 
 target 'apiList' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
   # Pods for apiList
-  pod 'Amplify', :path => $LOCAL_REPO
-  pod 'AmplifyPlugins', :path => $LOCAL_REPO
-  pod 'AWSPluginsCore', :path => $LOCAL_REPO
-  pod 'AmplifyPlugins/AWSAPIPlugin', :path => $LOCAL_REPO
+  pod 'Amplify' #, :path => $LOCAL_REPO
+  pod 'AmplifyPlugins' #, :path => $LOCAL_REPO
+  #pod 'AWSPluginsCore', :path => $LOCAL_REPO
+  pod 'AmplifyPlugins/AWSAPIPlugin' #, :path => $LOCAL_REPO
 
 
   target 'apiListTests' do
